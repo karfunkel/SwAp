@@ -1,0 +1,10 @@
+If using Abeille, when your export the component names (Form > Export Names),
+I suggest the folliwing settings:
+Prefix:		// Generation '$formname' START
+
+Decorator:	public $type get$method()
+			{
+				return ($type) getView().getProperty("$name");
+			}
+
+Suffix:		// Generation '$formname' END

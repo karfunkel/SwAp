@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="ISO_8859-1"?>
+<configuration>
+	<validators> <!-- Scripts that actually check for validity -->
+	<!--
+		All global variables available for inits and validators:
+			view		ViewController that is checked
+			component	JComponent that is checked
+			key			Key of the RuleSet
+			ruleKey		Key of the Rule
+			message		Message registered with the rule
+		Attention, inits might add additional variables
+	-->
+		<alphanum><!-- value -->
+			<![CDATA[             
+			import org.aklein.swap.util.validation.*; 			
+			if (ValidationUtils.isBlank(value))
+				return;
+			boolean err = false;
+			value = value.toUpperCase();
+			if (!ValidationUtils.isLetterOrDigit(value))
+				QueueRegistry.addError(CustomValidator.ERROR_TARGET, view, key, ruleKey, message);
+			else if ((value =~ "ÄÖÜß").matches())
+				QueueRegistry.addError(CustomValidator.ERROR_TARGET, view, key, ruleKey, message);
+			]]>
+		</alphanum>
+		<dependency><!-- value, baseValue -->
+			<![CDATA[
+			import org.aklein.swap.util.validation.*; 
+			if (!ValidationUtils.isBlank(baseValue)) 
+				if(ValidationUtils.isBlank(value))
+				    QueueRegistry.addError(CustomValidator.ERROR_TARGET, view, key, ruleKey, message);
+			]]>
+		</dependency>
+		<equal><!-- value, baseValue -->
+			<![CDATA[
+			import org.aklein.swap.util.validation.*;
+			if (!ValidationUtils.equals(baseValue, value)) 
+				QueueRegistry.addError(CustomValidator.ERROR_TARGET, view, key, ruleKey, message);
+			]]>
+		</equal>
+		<equalDependency><!-- value, baseValue -->
+			<![CDATA[
+			import org.aklein.swap.util.validation.*;
+			if(baseValue == null)
+				return;
+			else if((baseValue instanceof String) && (ValidationUtils.isBlank(baseValue)))
+				return;
+			else if((baseValue instanceof Number) && (ValidationUtils.isZero(baseValue)))
+				return;
+			else if(!ValidationUtils.equals(baseValue, value)) 
+				QueueRegistry.addError(CustomValidator.ERROR_TARGET, view, key, ruleKey, message);
+			]]>
+		</equalDependency>
+		<mandatory><!-- value -->
+			<![CDATA[
+			import org.aklein.swap.util.validation.*; 
+			if(value == null) 
+				QueueRegistry.addError(CustomValidator.ERROR_TARGET, view, key, ruleKey, message);
+			else if ((value instanceof String) && (ValidationUtils.isBlank(value))) 
+				    QueueRegistry.addError(CustomValidator.ERROR_TARGET, view, key, ruleKey, message); 
+			else if ((value instanceof Number)&& (ValidationUtils.isZero(value)))
+				    QueueRegistry.addError(CustomValidator.ERROR_TARGET, view, key, ruleKey, message); 
+			]]>
+		</mandatory>
+		<mandatoryWarning><!-- value -->
+			<![CDATA[
+			import org.aklein.swap.util.validation.*; 
+			if(value == null) 
+				QueueRegistry.addWarning(CustomValidator.ERROR_TARGET, view, key, ruleKey, message);
+			else if ((value instanceof String) && (ValidationUtils.isBlank(value)))
+				QueueRegistry.addWarning(CustomValidator.ERROR_TARGET, view, key, ruleKey, message); 
+			else if ((value instanceof Number) && (ValidationUtils.isZero(value)))
+				QueueRegistry.addWarning(CustomValidator.ERROR_TARGET, view, key, ruleKey, message);
+			]]>
+		</mandatoryWarning>
+		<mandatoryList><!-- value, min -->
+			<![CDATA[
+				if(value.getSize() < min)
+					QueueRegistry.addError(CustomValidator.ERROR_TARGET, view, key, ruleKey, message);
+			]]>
+		</mandatoryList><!-- value, max -->
+		<max>
+			<![CDATA[
+			import org.aklein.swap.util.validation.*; 
+			if (!ValidationUtils.hasMaximumLength(value, max)) 
+				QueueRegistry.addError(CustomValidator.ERROR_TARGET, view, key, ruleKey, message); 
+			]]>
+		</max>
+		<min><!-- value, min -->
+			<![CDATA[
+			import org.aklein.swap.util.validation.*; 
+			if (!ValidationUtils.hasMinimumLength(value, min)) 
+				QueueRegistry.addError(CustomValidator.ERROR_TARGET, view, key, ruleKey, message); 
+			]]>
+		</min>		
+		<range><!-- value, min, max -->
+			<![CDATA[			 
+			import org.aklein.swap.util.validation.*; 
+			if (!ValidationUtils.hasBoundedLength(value, min, max))
+				QueueRegistry.addError(CustomValidator.ERROR_TARGET, view, key, ruleKey, message); 
+			]]>
+		</range>
+		<telefon><!-- value -->
+			<![CDATA[             
+			import org.aklein.swap.util.validation.*; 			
+			if( (!ValidationUtils.isBlank(value)) && !((value =~ /\+\d+\s+\d+\s+\d+/).matches()))
+				QueueRegistry.addError(CustomValidator.ERROR_TARGET, view, key, ruleKey, message);
+			]]>
+		</telefon>
+		<isDouble><!-- value -->
+			<![CDATA[
+			import org.aklein.swap.util.validation.*;
+			if (!ValidationUtils.isDouble(value)) 
+				QueueRegistry.addError(CustomValidator.ERROR_TARGET, view, key, ruleKey, message);
+			]]>
+		</isDouble>
+		<multiple>
+			<mandatory><!-- value, column -->
+				<![CDATA[					
+				import org.aklein.swap.util.validation.*; 
+				model = view.getMainTable().getModel();
+				size = model.getSize();
+				for(row = 0; row < size; row++)
+				{
+					value = view.getMainTable().getModel().getValueAt(row, column);
+					System.out.println(row+" -> "+value);
+					if(value == null) 
+					{
+						QueueRegistry.addError(CustomValidator.ERROR_TARGET, view, key, ruleKey, message);
+					}
+					else if(value instanceof String) 
+					{ 
+						if (ValidationUtils.isBlank(value)) 
+							QueueRegistry.addError(CustomValidator.ERROR_TARGET, view, key, ruleKey, message); 
+					}
+					else if(value instanceof Number)
+					{
+						if (ValidationUtils.isZero(value)) 
+							QueueRegistry.addError(CustomValidator.ERROR_TARGET, view, key, ruleKey, message); 
+					}    
+				}
+			]]>
+			</mandatory>
+		</multiple>		
+	</validators> 
+    <validation> <!-- Specification of RuleSets per ViewController -->
+    	<!--
+    	<ViewName>
+    		<ruleset>
+    			<key></key>							key of the ruleset (unique)
+    			<component></component>				script to create the JComponent that correlates to this ruleset 
+    			<hint></hint>						hint to display while the component is edited. Use ${message:key;param1;param2;...} to use message-keys
+   				<mandatory>false</mandatory> 		marking ruleset as mandatory (optional)
+       			<language>groovy</language> 		script-language for evaluating the component (optional)
+    			<rule>
+    				<key></key>						key of rule (unique in ruleset) 
+    				<init></init>					script to initialize the scriptengine before evaluating the validator
+    				<validator></validator>			script to validate the JComponent eventually adding the message to the Queue(s) via QueueRegistry 
+    				<message></message>				message to add to the Queue(s). Use ${message:key;param1;param2;...} to use message-keys
+    				<language>groovy</language> 	script-language for evaluating the component (optional)
+    			</rule>
+    			...									multiple rules can be added
+    		</ruleset>
+    	</ViewName>
+    	-->
+		<GuiTestPanel>
+			<ruleset>
+				<key>Vorname</key>
+				<component>return view.vorname</component>
+				<hint>${message:GuiTestPanel#validation.vorname.hint}</hint>
+				<mandatory>true</mandatory>
+				<rule>
+					<key>mandatory</key>
+					<init>value = view.data.vorname</init>
+					<validator>${validators.mandatory}</validator>
+				    <message>${message:GuiTestPanel#validation.vorname.mandatory.message}</message>
+				</rule>
+			</ruleset>
+			<ruleset>
+				<key>Nachname</key>
+				<component>return view.nachname</component>
+				<hint>${message:GuiTestPanel#validation.nachname.hint}</hint>
+				<mandatory>true</mandatory>
+				<rule>
+					<key>mandatory</key>
+					<init>value = view.data.nachname</init>
+					<validator>${validators.mandatory}</validator>
+				    <message>${message:GuiTestPanel#validation.nachname.mandatory.message}</message>
+				</rule>
+			</ruleset>
+			<ruleset>
+				<key>Telefon</key>
+				<component>return view.tel</component>
+				<hint>${message:GuiTestPanel#validation.tel.hint}</hint>
+				<mandatory>true</mandatory>
+				<rule>
+					<key>mandatory</key>
+					<init>value = view.data.tel</init>
+					<validator>${validators.mandatory}</validator>
+				    <message>${message:GuiTestPanel#validation.tel.mandatory.message}</message>
+				</rule>
+				<rule>
+					<key>format</key>
+					<init>value = view.data.tel</init>
+					<validator>${validators.telefon}</validator>
+				    <message>${message:GuiTestPanel#validation.tel.format.message}</message>
+				</rule>
+			</ruleset>
+			<ruleset>
+				<key>Telefax</key>
+				<component>return view.fax</component>
+				<hint>${message:GuiTestPanel#validation.fax.hint}</hint>
+				<rule>
+					<key>format</key>
+					<init>value = view.data.fax</init>
+					<validator>${validators.telefon}</validator>
+				    <message>${message:GuiTestPanel#validation.fax.format.message}</message>
+				</rule>
+			</ruleset>
+		</GuiTestPanel>
+		<!-- ... -->		
+    </validation>
+</configuration>

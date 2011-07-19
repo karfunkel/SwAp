@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- 
+	Each value may contain a script in the language specified by tables[@language]
+	Tag values will be written to its property in TableColumnExt or, if it does not exist, stored via putClientProperty.  
+	To enable scriptusage, each tag must have an attribute 'script', set to true.
+	To convert the value to a Class, each tag can have an attribute 'type', set to the full qualified name of the class.
+	If type is not set, the type of the property (or Object for client properties) will be used.
+	The following variables will be provided: 
+		config		the comblete configuration
+		subConfig	the subconfiguration of the column
+		model		the TableColumnModel to be filled
+		key			the key of the table 
+		property	the property to be set
+		cls			the class of the property to be set
+		column		the TableColumnExt to be filled	    
+		
+	Example:
+		<column property="">
+			<modelIndex></modelIndex>
+			<title></title>
+			<width></width>
+			<preferredWidth></preferredWidth>
+			<maxWidth></maxWidth>
+			<minWidth></minWidth>
+			<cellRenderer></cellRenderer>
+			<cellEditor></cellEditor>
+			<headerRenderer></headerRenderer>
+			<resizable></resizable>
+			<comparator></comparator>
+			<editable></editable>
+			<highlighters></highlighters>
+			<prototypeValue></prototypeValue>
+			<sortable></sortable>
+			<toolTipText></toolTipText>
+			<visible></visible>
+		</column>
+ -->
+<configuration>
+	<tables language="groovy">
+		<adressen>
+			<!-- column property="">
+				<modelIndex></modelIndex>
+				<title></title>
+				<width></width>
+				<preferredWidth></preferredWidth>
+				<maxWidth></maxWidth>
+				<minWidth></minWidth>
+				<cellRenderer></cellRenderer>
+				<cellEditor></cellEditor>
+				<headerRenderer></headerRenderer>
+				<resizable></resizable>
+				<comparator></comparator>
+				<editable></editable>
+				<highlighters></highlighters>
+				<prototypeValue></prototypeValue>
+				<sortable></sortable>
+				<toolTipText></toolTipText>
+				<visible></visible>
+			</column-->
+			<column property="vorname">
+				<modelIndex>1</modelIndex>
+				<title>${message:GuiTestPanel#adressen.vorname}</title>
+				<maxWidth>150</maxWidth>
+				<minWidth>100</minWidth>
+				<editable>false</editable>
+				<sortable>true</sortable>
+				<toolTipText></toolTipText>
+				<visible>true</visible>
+			</column>
+			<column property="nachname">
+				<modelIndex>0</modelIndex>
+				<title>${message:GuiTestPanel#adressen.nachname}</title>
+				<maxWidth>150</maxWidth>
+				<minWidth>100</minWidth>
+				<editable>false</editable>
+				<sortable>true</sortable>
+				<toolTipText></toolTipText>
+				<visible>true</visible>
+			</column>
+			<column property="ort">
+				<modelIndex>2</modelIndex>
+				<title>${message:GuiTestPanel#adressen.ort}</title>
+				<minWidth>100</minWidth>
+				<width>200</width>
+				<editable>false</editable>
+				<sortable>true</sortable>
+				<toolTipText></toolTipText>
+				<visible>true</visible>
+			</column>
+		</adressen>
+	</tables>
+</configuration>

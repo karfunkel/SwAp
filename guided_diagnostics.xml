@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 rel. 3 (http://www.altova.com) by Vincent Spallek (ETAS) -->
+<item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<name>Guided Diagnostics</name>
+	<item>
+		<Mode>Expert Mode Fault Diagnostic</Mode>
+		<item>
+			<Sequence>change left door</Sequence>
+			<Description>how to change left door</Description>
+			<item>
+				<Sequence>remove cover</Sequence>
+				<Description>Pull cover off.</Description>
+				<Image>Photo goes here...</Image>
+			</item>
+			<item>
+				<Sequence>release screws</Sequence>
+				<Description>Release 3 screws on frame.</Description>
+				<Image>Photo goes here...</Image>
+			</item>
+		</item>
+	</item>
+	<item>
+		<Mode>Symptom Based Trouble Search</Mode>
+		<action>Delete Symptom</action>
+		<action>Add Symptom</action>
+		<item>
+			<Symptom>rattle</Symptom>
+			<Description>Strange rattling from motor</Description>
+		</item>
+		<item>
+			<Symptom>engine does not start</Symptom>
+			<Description>no sound when turning the key</Description>
+		</item>
+		<item>
+			<Symptom>power window not closing</Symptom>
+			<Description>driver power window is not closing</Description>
+		</item>
+	</item>
+	<item>
+		<Mode>DTC Driven Diagnostic</Mode>
+		<action styleName="greenButton">Refresh DTCs</action>
+		<action>Clear DTCs</action>
+		<item>
+			<DTC>B1983</DTC>
+			<Description>Airbrake spoiler sensor - open circuit</Description>
+			<item>
+				<fault>open circuit</fault>
+				<solution>Please fix sensor plug correctly.</solution>
+			</item>
+			<item>
+			</item>
+			<item>
+				<fault>Did this help?</fault>
+				<solution>YES</solution>
+			</item>
+			<item>
+				<fault/>
+				<solution>NO</solution>
+			</item>
+		</item>
+		<item>
+			<DTC>B1983</DTC>
+			<Description>Differential temperature sensor - open circuit or high voltage</Description>
+		</item>
+		<item>
+			<DTC>B1997</DTC>
+			<Description>Fuel temperature sensor - open circuit or high voltage</Description>
+		</item>
+	</item>
+</item>

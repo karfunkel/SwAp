@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<configuration>
+  <header>
+    <!-- Meta data about the resulting combined configuration -->
+  </header>
+  <override>
+    <!-- Configuration declarations with override semantics -->
+    <xml fileName="application.xml" delimiterParsingDisabled="true" config-name="application" config-optional="false"/>    
+    <xml fileName="validation.xml" delimiterParsingDisabled="true" config-name="validation" config-optional="false"/>    
+    <xml fileName="theme.xml" delimiterParsingDisabled="true" config-name="theme" config-optional="false"/>    
+    <xml fileName="tables.xml" delimiterParsingDisabled="true" config-name="tables" config-optional="false"/>    
+    <system />
+  </override>
+  <additional>
+    <!-- Configuration declarations that form a union configuration -->
+  </additional>
+</configuration>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/util 
+           http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+	<context:annotation-config />
+
+	<bean id="tool" class="org.aklein.swap.util.spring.SpringTools" />
+
+	<bean id="application" class="org.jdesktop.application.Application"
+		factory-method="getInstance" />
+	<bean id="applicationContext" factory-bean="application"
+		factory-method="getContext" scope="prototype" />
+	<bean id="resourceManager" factory-bean="applicationContext"
+		factory-method="getResourceManager" scope="prototype"
+		depends-on="application" />
+	<bean id="resourceMap" factory-bean="applicationContext"
+		factory-method="getResourceMap" scope="prototype"
+		depends-on="application" />
+
+	<bean id="messageBus"
+		class="org.aklein.swap.bus.impl.MessageBusImpl" />
+
+	<bean id="configurationFactory"
+		depends-on="configurationChannel,messageBus"
+		class="org.aklein.swap.util.configuration.ConfigurationFactory">
+	</bean>
+	<bean id="config" factory-bean="configurationFactory"
+		factory-method="createInstance" depends-on="configurationFactory">
+		<constructor-arg type="java.io.File" value="conf/dynamic/config.xml" />
+		<constructor-arg type="java.lang.String" value="org.aklein.swap.examples.dynamic" />
+	</bean>
+	<bean id="configurationChannel"
+		class="org.aklein.swap.bus.channel.DefaultChannel">
+		<constructor-arg type="java.lang.String" value="Configuration" />
+	</bean>
+
+	<bean id="errorQueue"
+		class="org.aklein.swap.util.validation.QueueRegistry"
+		factory-method="createQueue" depends-on="resourceMap,tool">
+		<constructor-arg>
+			<util:constant
+				static-field="org.aklein.swap.util.validation.CustomValidator.ERROR_TARGET" />
+		</constructor-arg>
+		<constructor-arg>
+			<bean factory-bean="tool"
+				factory-method="getResourceString">
+				<constructor-arg type="java.lang.String"
+					value="Queue.errors" />
+			</bean>
+		</constructor-arg>
+		<constructor-arg value="true" />
+	</bean>
+	<bean id="infoQueue"
+		class="org.aklein.swap.util.validation.QueueRegistry"
+		factory-method="createQueue" depends-on="resourceMap,tool">
+		<constructor-arg>
+			<util:constant
+				static-field="org.aklein.swap.util.validation.CustomValidator.INFO_TARGET" />
+		</constructor-arg>
+		<constructor-arg>
+			<bean factory-bean="tool"
+				factory-method="getResourceString">
+				<constructor-arg type="java.lang.String"
+					value="Queue.infos" />
+			</bean>
+		</constructor-arg>
+		<constructor-arg value="false" />
+	</bean>
+
+</beans>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- 
+	Each value may contain a script in the language specified by tables[@language]
+	Tag values will be written to its property in TableColumnExt or, if it does not exist, stored via putClientProperty.  
+	To enable scriptusage, each tag must have an attribute 'script', set to true.
+	To convert the value to a Class, each tag can have an attribute 'type', set to the full qualified name of the class.
+	If type is not set, the type of the property (or Object for client properties) will be used.
+	The following variables will be provided: 
+		config		the comblete configuration
+		subConfig	the subconfiguration of the column
+		model		the TableColumnModel to be filled
+		key			the key of the table 
+		property	the property to be set
+		cls			the class of the property to be set
+		column		the TableColumnExt to be filled	    
+		
+	Example:
+		<column property="">
+			<modelIndex></modelIndex>
+			<title></title>
+			<width></width>
+			<preferredWidth></preferredWidth>
+			<maxWidth></maxWidth>
+			<minWidth></minWidth>
+			<cellRenderer></cellRenderer>
+			<cellEditor></cellEditor>
+			<headerRenderer></headerRenderer>
+			<resizable></resizable>
+			<comparator></comparator>
+			<editable></editable>
+			<highlighters></highlighters>
+			<prototypeValue></prototypeValue>
+			<sortable></sortable>
+			<toolTipText></toolTipText>
+			<visible></visible>
+		</column>
+ -->
+<configuration>
+	<tables language="groovy">
+		<keys>
+			<!-- column property="">
+				<modelIndex></modelIndex>
+				<title></title>
+				<width></width>
+				<preferredWidth></preferredWidth>
+				<maxWidth></maxWidth>
+				<minWidth></minWidth>
+				<cellRenderer></cellRenderer>
+				<cellEditor></cellEditor>
+				<headerRenderer></headerRenderer>
+				<resizable></resizable>
+				<comparator></comparator>
+				<editable></editable>
+				<highlighters></highlighters>
+				<prototypeValue></prototypeValue>
+				<sortable></sortable>
+				<toolTipText></toolTipText>
+				<visible></visible>
+			</column-->
+			<column property="inWallet">
+				<modelIndex>0</modelIndex>
+				<title>${message:SecurityManagerPanel#keys.inWallet}</title>
+				<maxWidth>60</maxWidth>
+				<minWidth>60</minWidth>
+				<editable>false</editable>
+				<sortable>true</sortable>
+				<toolTipText></toolTipText>
+				<visible>true</visible>
+				<prototypeValue script="true">true</prototypeValue>
+			</column>
+			<column property="type">
+				<modelIndex>1</modelIndex>
+				<title>${message:SecurityManagerPanel#keys.type}</title>
+				<maxWidth>100</maxWidth>
+				<minWidth>70</minWidth>
+				<editable>false</editable>
+				<sortable>true</sortable>
+				<toolTipText></toolTipText>
+				<visible>true</visible>
+			</column>
+			<column property="name">
+				<modelIndex>2</modelIndex>
+				<title>${message:SecurityManagerPanel#keys.name}</title>
+				<maxWidth>100</maxWidth>
+				<minWidth>70</minWidth>
+				<editable>false</editable>
+				<sortable>true</sortable>
+				<toolTipText></toolTipText>
+				<visible>true</visible>
+			</column>
+			<column property="encrypted">
+				<modelIndex>3</modelIndex>
+				<title>${message:SecurityManagerPanel#keys.encrypted}</title>
+				<maxWidth>60</maxWidth>
+				<minWidth>60</minWidth>
+				<editable>false</editable>
+				<sortable>true</sortable>
+				<toolTipText></toolTipText>
+				<visible>true</visible>
+				<prototypeValue script="true">true</prototypeValue>
+			</column>
+			<column property="authorized">
+				<modelIndex>4</modelIndex>
+				<title>${message:SecurityManagerPanel#keys.authorized}</title>
+				<maxWidth>60</maxWidth>
+				<minWidth>60</minWidth>
+				<editable>false</editable>
+				<sortable>true</sortable>
+				<toolTipText></toolTipText>
+				<visible>true</visible>
+				<prototypeValue script="true">true</prototypeValue>
+			</column>
+			<column property="text">
+				<modelIndex>5</modelIndex>
+				<title>${message:SecurityManagerPanel#keys.text}</title>
+				<minWidth>100</minWidth>
+				<editable>false</editable>
+				<sortable>true</sortable>
+				<toolTipText></toolTipText>
+				<visible>true</visible>
+			</column>
+		</keys>
+		<files>
+			<column property="encrypted">
+				<modelIndex>0</modelIndex>
+				<title>${message:SecurityManagerPanel#files.encrypted}</title>
+				<maxWidth>100</maxWidth>
+				<minWidth>70</minWidth>
+				<editable>false</editable>
+				<sortable>true</sortable>
+				<toolTipText></toolTipText>
+				<visible>true</visible>
+				<prototypeValue script="true">true</prototypeValue>
+			</column>
+			<column property="name">
+				<modelIndex>1</modelIndex>
+				<title>${message:SecurityManagerPanel#files.name}</title>
+				<minWidth>100</minWidth>
+				<editable>false</editable>
+				<sortable>true</sortable>
+				<toolTipText></toolTipText>
+				<visible>true</visible>
+			</column>
+		</files>
+		<wallet>
+			<column property="key">
+				<modelIndex>0</modelIndex>
+				<title>${message:SecurityManagerPanel#wallet.key}</title>
+				<maxWidth>200</maxWidth>
+				<minWidth>100</minWidth>
+				<editable>false</editable>
+				<sortable>true</sortable>
+				<toolTipText></toolTipText>
+				<visible>true</visible>
+			</column>
+			<column property="value">
+				<modelIndex>1</modelIndex>
+				<title>${message:SecurityManagerPanel#wallet.value}</title>
+				<minWidth>200</minWidth>
+				<editable>false</editable>
+				<sortable>true</sortable>
+				<toolTipText></toolTipText>
+				<visible>true</visible>
+			</column>
+		</wallet>
+		<users>
+			<column property="name">
+				<modelIndex>0</modelIndex>
+				<title>${message:SecurityManagerPanel#users.name}</title>
+				<maxWidth>200</maxWidth>
+				<minWidth>100</minWidth>
+				<editable>false</editable>
+				<sortable>true</sortable>
+				<toolTipText></toolTipText>
+				<visible>true</visible>
+			</column>
+			<column property="desc">
+				<modelIndex>1</modelIndex>
+				<title>${message:SecurityManagerPanel#users.desc}</title>
+				<minWidth>200</minWidth>
+				<editable>false</editable>
+				<sortable>true</sortable>
+				<toolTipText></toolTipText>
+				<visible>true</visible>
+			</column>
+			<column property="valid">
+				<modelIndex>2</modelIndex>
+				<title>${message:SecurityManagerPanel#users.valid}</title>
+				<maxWidth>100</maxWidth>
+				<minWidth>70</minWidth>
+				<editable>false</editable>
+				<sortable>true</sortable>				
+				<toolTipText></toolTipText>
+				<visible>true</visible>
+				<cellRenderer script="true">new org.aklein.swap.examples.security.ThreeWayBooleanCellRenderer()</cellRenderer>
+			</column>
+		</users>
+	</tables>
+</configuration>
