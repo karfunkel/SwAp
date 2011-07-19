@@ -24,100 +24,103 @@ import org.jdesktop.swingx.decorator.ShadingColorHighlighter;
 import com.jeta.forms.gui.common.FormException;
 
 public class DynamicPanel extends AbeilleViewControllerPanel {
-	private static final long	serialVersionUID	= -9188137121692186025L;
-	private static Log			log					= LogFactory.getLog(DynamicPanel.class);
+    private static final long	serialVersionUID	= -9188137121692186025L;
+    private static Log			log					= LogFactory.getLog(DynamicPanel.class);
 
-	public DynamicPanel() throws FormException {
-		super(DynamicPanel.class.getResourceAsStream("resources/GTS.jfrm"));
-	}
+    public DynamicPanel() throws FormException {
+        super(DynamicPanel.class.getResourceAsStream("resources/GTS.jfrm"));
+    }
 
-	@Override
-	protected Component[] focusComponents() {
-		return new Component[] { getActionBar(), getGrid() };
-	}
+    @Override
+    protected Component[] focusComponents() {
+        return new Component[] { getActionBar(), getGrid() };
+    }
 
-	@Override
-	protected void initComponents() {
-		fillActions("/item");
-		try {
-			getGrid().setColumnControlVisible(true);
-			getGrid().setRolloverEnabled(true);
-			getGrid().setShowGrid(true, false);
-			getGrid().setSortable(true);
-			getGrid().setAutoCreateColumnsFromModel(false);
-			getGrid().setHighlighters(new ShadingColorHighlighter(new HighlightPredicate() {
-				public boolean isHighlighted(Component renderer, ComponentAdapter adapter) {
-					return (adapter.row % 2) == 1;
-				}
-			}));
-			final XPathTableModel model = new XPathTableModel(new File("guided_diagnostics.xml").toURI().toURL(), "/item", "item", "action");
-			getGrid().setColumnModel(model);
-			getGrid().setModel(model);
+    @Override
+    protected void initComponents() {
+        fillActions("/item");
+        try {
+            getGrid().setColumnControlVisible(true);
+            getGrid().setRolloverEnabled(true);
+            getGrid().setShowGrid(true, false);
+            getGrid().setAutoCreateColumnsFromModel(false);
+            getGrid().setHighlighters(new ShadingColorHighlighter(new HighlightPredicate() {
+                public boolean isHighlighted(Component renderer, ComponentAdapter adapter) {
+                    return (adapter.row % 2) == 1;
+                }
+            }));
+            final XPathTableModel model = new XPathTableModel(new File("guided_diagnostics.xml").toURI().toURL(), "/item", "item", "action");
+            getGrid().setAutoCreateRowSorter(false);
+            getGrid().setRowSorter(null);
+            getGrid().setColumnModel(model);
+            getGrid().setModel(model);
+            getGrid().setAutoCreateRowSorter(true);
+            getGrid().setSortable(true);
 
-			getGrid().addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					int row = getGrid().getSelectedRow();
-					row = getGrid().convertRowIndexToModel(row);
-					Element data = model.getRow(row);
-					model.setRoot(data.getUniquePath());
-					fillActions(data.getUniquePath());
-				}
-			});
-		}
-		catch (MalformedURLException e) {
-			log.error(e);
-		}
-		catch (DocumentException e) {
-			log.error(e);
-		}
-	}
+            getGrid().addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    int row = getGrid().getSelectedRow();
+                    row = getGrid().convertRowIndexToModel(row);
+                    Element data = model.getRow(row);
+                    model.setRoot(data.getUniquePath());
+                    fillActions(data.getUniquePath());
+                }
+            });
+        }
+        catch (MalformedURLException e) {
+            log.error(e);
+        }
+        catch (DocumentException e) {
+            log.error(e);
+        }
+    }
 
-	@SuppressWarnings("unchecked")
-	private void fillActions(String root) {
-		getActionBar().removeAll();
-		getActionBar().add(new JButton(getContext().getActionMap(this).get("refresh")));
-		getActionBar().add(new JButton(getContext().getActionMap(this).get("startOver")));
+    @SuppressWarnings("unchecked")
+    private void fillActions(String root) {
+        getActionBar().removeAll();
+        getActionBar().add(new JButton(getContext().getActionMap(this).get("refresh")));
+        getActionBar().add(new JButton(getContext().getActionMap(this).get("startOver")));
 
-		SAXReader reader = new SAXReader();
-		try {
-			Document doc = reader.read(new File("guided_diagnostics.xml"));
-			List<Element> elems = doc.selectNodes(root + "/*");
-			for (Element elem : elems)
-				if (elem.getName().equals("action"))
-					getActionBar().add(new JButton(elem.getTextTrim()));
-			getActionBar().revalidate();
-			getActionBar().repaint();
-		}
-		catch (DocumentException e) {
-			log.error(e);
-		}
-	}
+        SAXReader reader = new SAXReader();
+        try {
+            Document doc = reader.read(new File("guided_diagnostics.xml"));
+            List<Element> elems = doc.selectNodes(root + "/*");
+            for (Element elem : elems)
+                if (elem.getName().equals("action"))
+                    getActionBar().add(new JButton(elem.getTextTrim()));
+                    getActionBar().revalidate();
+                    getActionBar().repaint();
+        }
+        catch (DocumentException e) {
+            log.error(e);
+        }
+    }
 
-	public String getMessageKey() {
-		return "DynamicPanel";
-	}
+    public String getMessageKey() {
+        return "DynamicPanel";
+    }
 
-	@Action(name = "refresh")
-	public void doRefresh() {
-		((XPathTableModel) getGrid().getModel()).reload();
-		doStartOver();
-	}
+    @Action(name = "refresh")
+    public void doRefresh() {
+        ((XPathTableModel) getGrid().getModel()).reload();
+        doStartOver();
+    }
 
-	@Action(name = "startOver")
-	public void doStartOver() {
-		fillActions("/item");
-		((XPathTableModel) getGrid().getModel()).setRoot("/item");
-	}
+    @Action(name = "startOver")
+    public void doStartOver() {
+        fillActions("/item");
+        ((XPathTableModel) getGrid().getModel()).setRoot("/item");
+    }
 
-	// Generation 'GTS' START
-	public javax.swing.JToolBar getActionBar() {
-		return (javax.swing.JToolBar) getView().getProperty("actionBar");
-	}
+    // Generation 'GTS' START
+    public javax.swing.JToolBar getActionBar() {
+        return (javax.swing.JToolBar) getView().getProperty("actionBar");
+    }
 
-	public org.jdesktop.swingx.JXTable getGrid() {
-		return (org.jdesktop.swingx.JXTable) getView().getProperty("grid");
-	}
-	// Generation 'GTS' END
+    public org.jdesktop.swingx.JXTable getGrid() {
+        return (org.jdesktop.swingx.JXTable) getView().getProperty("grid");
+    }
+    // Generation 'GTS' END
 
 }

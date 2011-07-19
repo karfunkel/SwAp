@@ -103,8 +103,8 @@ public class SwingBinder {
         Bindings.bind(checkBox, valueModel);
         for (PropertyChangeListener listener : validationListeners)
             valueModel.addValueChangeListener(listener);
-        for (PropertyChangeListener listener : validationListener)
-            valueModel.addValueChangeListener(listener);
+                for (PropertyChangeListener listener : validationListener)
+                    valueModel.addValueChangeListener(listener);
     }
 
     /**
@@ -135,10 +135,10 @@ public class SwingBinder {
         Bindings.bind(comboBox, selectionInList);
         for (PropertyChangeListener listener : validationListeners)
             selectionInList.addValueChangeListener(listener);
-        for (PropertyChangeListener listener : validationListener)
-            selectionInList.addValueChangeListener(listener);
-        if (cellRenderer != null)
-            comboBox.setRenderer(cellRenderer);
+                for (PropertyChangeListener listener : validationListener)
+                    selectionInList.addValueChangeListener(listener);
+                        if (cellRenderer != null)
+                            comboBox.setRenderer(cellRenderer);
     }
 
     /**
@@ -166,17 +166,17 @@ public class SwingBinder {
         colorChooser.setSelectionModel(new ColorSelectionAdapter(valueModel));
         for (PropertyChangeListener listener : validationListeners)
             valueModel.addValueChangeListener(listener);
-        for (PropertyChangeListener listener : validationListener)
-            valueModel.addValueChangeListener(listener);
-        // Due to a bug in Java 1.4.2, Java 5 and Java 6, we don't use
-        // the Bindings class, but provide a ColorSelectionModel at
-        // instance creation time. The bug is in BasicColorChooserUI
-        // that doesn't listen to color selection model changes.
-        // This is required to update the color preview panel.
-        // But the BasicColorChooserUI registers a preview listener
-        // with the initial color selection model.
-        // Bindings.bind(colorChooser, valueModel);
-        return colorChooser;
+                for (PropertyChangeListener listener : validationListener)
+                    valueModel.addValueChangeListener(listener);
+                        // Due to a bug in Java 1.4.2, Java 5 and Java 6, we don't use
+                        // the Bindings class, but provide a ColorSelectionModel at
+                        // instance creation time. The bug is in BasicColorChooserUI
+                        // that doesn't listen to color selection model changes.
+                        // This is required to update the color preview panel.
+                        // But the BasicColorChooserUI registers a preview listener
+                        // with the initial color selection model.
+                        // Bindings.bind(colorChooser, valueModel);
+                        return colorChooser;
     }
 
     /**
@@ -199,17 +199,17 @@ public class SwingBinder {
         colorChooser.setSelectionModel(new ColorSelectionAdapter(valueModel, defaultColor));
         for (PropertyChangeListener listener : validationListeners)
             valueModel.addValueChangeListener(listener);
-        for (PropertyChangeListener listener : validationListener)
-            valueModel.addValueChangeListener(listener);
-        // Due to a bug in Java 1.4.2, Java 5 and Java 6, we don't use
-        // the Bindings class, but provide a ColorSelectionModel at
-        // instance creation time. The bug is in BasicColorChooserUI
-        // that doesn't listen to color selection model changes.
-        // This is required to update the color preview panel.
-        // But the BasicColorChooserUI registers a preview listener
-        // with the initial color selection model.
-        // Bindings.bind(colorChooser, valueModel);
-        return colorChooser;
+                for (PropertyChangeListener listener : validationListener)
+                    valueModel.addValueChangeListener(listener);
+                        // Due to a bug in Java 1.4.2, Java 5 and Java 6, we don't use
+                        // the Bindings class, but provide a ColorSelectionModel at
+                        // instance creation time. The bug is in BasicColorChooserUI
+                        // that doesn't listen to color selection model changes.
+                        // This is required to update the color preview panel.
+                        // But the BasicColorChooserUI registers a preview listener
+                        // with the initial color selection model.
+                        // Bindings.bind(colorChooser, valueModel);
+                        return colorChooser;
     }
 
     /**
@@ -232,8 +232,8 @@ public class SwingBinder {
         bindFormattedTextField(textField, valueModel, formatterFactory);
         for (PropertyChangeListener listener : validationListeners)
             valueModel.addValueChangeListener(listener);
-        for (PropertyChangeListener listener : validationListener)
-            valueModel.addValueChangeListener(listener);
+                for (PropertyChangeListener listener : validationListener)
+                    valueModel.addValueChangeListener(listener);
     }
 
     /**
@@ -292,8 +292,8 @@ public class SwingBinder {
         Bindings.bind(textField, valueModel, commitOnFocusLost);
         for (PropertyChangeListener listener : validationListeners)
             valueModel.addValueChangeListener(listener);
-        for (PropertyChangeListener listener : validationListener)
-            valueModel.addValueChangeListener(listener);
+                for (PropertyChangeListener listener : validationListener)
+                    valueModel.addValueChangeListener(listener);
     }
 
     public void bindFormattedTextField(JFormattedTextField textField, ValueModel valueModel, JFormattedTextField.AbstractFormatterFactory formatterFactory,
@@ -712,8 +712,8 @@ public class SwingBinder {
         Bindings.bind(label, valueModel);
         for (PropertyChangeListener listener : validationListeners)
             valueModel.addValueChangeListener(listener);
-        for (PropertyChangeListener listener : validationListener)
-            valueModel.addValueChangeListener(listener);
+                for (PropertyChangeListener listener : validationListener)
+                    valueModel.addValueChangeListener(listener);
     }
 
     /**
@@ -741,11 +741,11 @@ public class SwingBinder {
         Bindings.bind(list, selectionInList);
         for (PropertyChangeListener listener : validationListeners)
             selectionInList.addValueChangeListener(listener);
-        for (PropertyChangeListener listener : validationListener)
-            selectionInList.addValueChangeListener(listener);
-        if (cellRenderer != null) {
-            list.setCellRenderer(cellRenderer);
-        }
+                for (PropertyChangeListener listener : validationListener)
+                    selectionInList.addValueChangeListener(listener);
+                        if (cellRenderer != null) {
+                            list.setCellRenderer(cellRenderer);
+                        }
     }
 
     /**
@@ -785,8 +785,8 @@ public class SwingBinder {
         Bindings.bind(textField, valueModel, commitOnFocusLost);
         for (PropertyChangeListener listener : validationListeners)
             valueModel.addValueChangeListener(listener);
-        for (PropertyChangeListener listener : validationListener)
-            valueModel.addValueChangeListener(listener);
+                for (PropertyChangeListener listener : validationListener)
+                    valueModel.addValueChangeListener(listener);
     }
 
     /**
@@ -801,8 +801,8 @@ public class SwingBinder {
         Bindings.bind(radioButton, model, choice);
         for (PropertyChangeListener listener : validationListeners)
             model.addValueChangeListener(listener);
-        for (PropertyChangeListener listener : validationListener)
-            model.addValueChangeListener(listener);
+                for (PropertyChangeListener listener : validationListener)
+                    model.addValueChangeListener(listener);
     }
 
     /**
@@ -824,8 +824,8 @@ public class SwingBinder {
         Bindings.bind(textArea, valueModel, commitOnFocusLost);
         for (PropertyChangeListener listener : validationListeners)
             valueModel.addValueChangeListener(listener);
-        for (PropertyChangeListener listener : validationListener)
-            valueModel.addValueChangeListener(listener);
+                for (PropertyChangeListener listener : validationListener)
+                    valueModel.addValueChangeListener(listener);
     }
 
     /**
@@ -847,8 +847,8 @@ public class SwingBinder {
         Bindings.bind(textField, valueModel, commitOnFocusLost);
         for (PropertyChangeListener listener : validationListeners)
             valueModel.addValueChangeListener(listener);
-        for (PropertyChangeListener listener : validationListener)
-            valueModel.addValueChangeListener(listener);
+                for (PropertyChangeListener listener : validationListener)
+                    valueModel.addValueChangeListener(listener);
     }
 
     /**
@@ -873,8 +873,8 @@ public class SwingBinder {
         spinner.setModel(spinnerModel);
         for (PropertyChangeListener listener : validationListeners)
             valueModel.addValueChangeListener(listener);
-        for (PropertyChangeListener listener : validationListener)
-            valueModel.addValueChangeListener(listener);
+                for (PropertyChangeListener listener : validationListener)
+                    valueModel.addValueChangeListener(listener);
     }
 
     /**
@@ -905,8 +905,8 @@ public class SwingBinder {
         spinner.setModel(spinnerModel);
         for (PropertyChangeListener listener : validationListeners)
             valueModel.addValueChangeListener(listener);
-        for (PropertyChangeListener listener : validationListener)
-            valueModel.addValueChangeListener(listener);
+                for (PropertyChangeListener listener : validationListener)
+                    valueModel.addValueChangeListener(listener);
     }
 
     /**
@@ -930,8 +930,8 @@ public class SwingBinder {
         bind(slider, "value", valueModel, "value");
         for (PropertyChangeListener listener : validationListeners)
             valueModel.addValueChangeListener(listener);
-        for (PropertyChangeListener listener : validationListener)
-            valueModel.addValueChangeListener(listener);
+                for (PropertyChangeListener listener : validationListener)
+                    valueModel.addValueChangeListener(listener);
     }
 
     public <T>void bindJTable(final JTable table, TableColumnModel columnModel, ListModel listModel, PropertyChangeListener... validationListener) {
@@ -940,15 +940,18 @@ public class SwingBinder {
 
     public <T>void bindJTable(final JTable table, TableColumnModel columnModel, ListModel listModel, ValueModel selectionValueModel, PropertyChangeListener... validationListener) {
         TableModel tableModel = new GenericTableAdapter<T>(listModel, columnModel);
+        table.setAutoCreateRowSorter(false);
+        table.setRowSorter(null);
         table.setModel(tableModel);
         table.setColumnModel(columnModel);
+        table.setAutoCreateRowSorter(true);
         if (selectionValueModel != null) {
             SelectionInList<T> selectionInList = new SelectionInList<T>(listModel, selectionValueModel);//
             for (PropertyChangeListener listener : validationListeners)
                 selectionInList.addValueChangeListener(listener);
-            for (PropertyChangeListener listener : validationListener)
-                selectionInList.addValueChangeListener(listener);
-            table.setSelectionModel(new SingleListSelectionAdapter(selectionInList.getSelectionIndexHolder()));
+                    for (PropertyChangeListener listener : validationListener)
+                        selectionInList.addValueChangeListener(listener);
+                            table.setSelectionModel(new SingleListSelectionAdapter(selectionInList.getSelectionIndexHolder()));
         }
     }
 
@@ -969,8 +972,8 @@ public class SwingBinder {
         if (validating) {
             for (PropertyChangeListener listener : validationListeners)
                 valueModel.addValueChangeListener(listener);
-            for (PropertyChangeListener listener : validationListener)
-                valueModel.addValueChangeListener(listener);
+                    for (PropertyChangeListener listener : validationListener)
+                        valueModel.addValueChangeListener(listener);
         }
     }
 

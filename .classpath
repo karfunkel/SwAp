@@ -4,27 +4,29 @@
 	<classpathentry kind="lib" path="lib/binding-2.0.2.jar" sourcepath="C:/Projekte/lib/binding-2.0.2/src/core"/>
 	<classpathentry kind="lib" path="lib/validation-2.0.0.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-1.2.13.jar"/>
-	<classpathentry kind="lib" path="lib/commons-logging-1.1.jar"/>
-	<classpathentry kind="lib" path="lib/commons-beanutils.jar"/>
-	<classpathentry kind="lib" path="lib/commons-collections-3.2.jar"/>
-	<classpathentry kind="lib" path="lib/commons-lang-2.3.jar"/>
-	<classpathentry kind="lib" path="lib/commons-configuration-1.5.jar" sourcepath="C:/Projekte/lib/commons-configuration-1.5-src/src/java"/>
-	<classpathentry kind="lib" path="lib/commons-digester-1.7.jar"/>
 	<classpathentry kind="lib" path="lib/AppFramework-1.03.jar" sourcepath="C:/Projekte/lib/AppFramework-1.03/src"/>
-	<classpathentry kind="lib" path="lib/swingx-0.9.3.jar"/>
 	<classpathentry kind="lib" path="lib/formsrt.jar" sourcepath="/abeille/src"/>
 	<classpathentry kind="lib" path="lib/dom4j-1.6.1.jar" sourcepath="C:/eclipseProjects/lib/dom4j-1.6.1/src/java"/>
 	<classpathentry kind="lib" path="lib/jaxen-1.1.1.jar"/>
-	<classpathentry kind="lib" path="lib/spring-beans.jar" sourcepath="C:/eclipseProjects/lib/spring-framework-2.5.5/src"/>
-	<classpathentry kind="lib" path="lib/spring-context.jar"/>
-	<classpathentry kind="lib" path="lib/spring-core.jar"/>
 	<classpathentry kind="lib" path="lib/MultipleGradientPaint.jar"/>
-	<classpathentry kind="lib" path="lib/swing-worker.jar"/>
 	<classpathentry kind="lib" path="lib/jxlayer.jar"/>
 	<classpathentry kind="lib" path="lib/Filters.jar"/>
-	<classpathentry kind="lib" path="lib/common-annotations.jar"/>
-	<classpathentry kind="lib" path="lib/groovy-all-1.6.3.jar" sourcepath="C:/eclipseProjects/lib/groovy-1.6.3/src/main"/>
 	<classpathentry kind="lib" path="lib/bsf.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
+	<classpathentry kind="lib" path="lib/swingx-beaninfo-1.6.2.jar"/>
+	<classpathentry kind="lib" path="lib/swingx-core-1.6.2.jar" sourcepath="C:/stuff-tools/swingx-1.6.2-sources"/>
+	<classpathentry kind="lib" path="lib/commons-configuration-1.6.jar"/>
+	<classpathentry kind="lib" path="lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/commons-digester-1.8.jar"/>
+	<classpathentry kind="lib" path="lib/org.springframework.beans-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/org.springframework.context-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/org.springframework.core-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/org.springframework.asm-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/org.springframework.expression-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/swing-worker.jar"/>
+	<classpathentry kind="lib" path="lib/groovy-all-1.7.10.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
