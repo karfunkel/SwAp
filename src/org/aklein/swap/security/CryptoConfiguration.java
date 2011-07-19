@@ -57,6 +57,8 @@ public class CryptoConfiguration {
 
     private List<String> integrityDirExcludes = new ArrayList<String>();
 
+    private String digestFileName = ".digest";
+
     public String getEncryptedPrefix() {
         return encryptedPrefix;
     }
@@ -266,7 +268,8 @@ public class CryptoConfiguration {
     }
 
     /**
-     * @param integrityResultWithoutDigest ignore IntegrityCheck for directories without digest file
+     * @param integrityResultWithoutDigest ignore IntegrityCheck for directories
+     *            without digest file
      */
     public void setIntegrityResultWithoutDigest(boolean integrityResultWithoutDigest) {
         this.integrityResultWithoutDigest = integrityResultWithoutDigest;
@@ -294,7 +297,9 @@ public class CryptoConfiguration {
     }
 
     /**
-     * If saltSize is positive, it is taken as the size of the randomly generated salt. If saltSize is negative, it represents a bit-pattern to the first character of the password.
+     * If saltSize is positive, it is taken as the size of the randomly
+     * generated salt. If saltSize is negative, it represents a bit-pattern to
+     * the first character of the password.
      * @param saltSize the saltSize to set
      */
     public void setSaltSize(int saltSize) {
@@ -327,5 +332,19 @@ public class CryptoConfiguration {
      */
     public void setIntegrityDirExcludes(List<String> integrityDirExcludes) {
         this.integrityDirExcludes = integrityDirExcludes;
+    }
+
+    /**
+     * @return the digestFileName
+     */
+    public String getDigestFileName() {
+        return digestFileName;
+    }
+
+    /**
+     * @param digestFileName the digestFileName to set
+     */
+    public void setDigestFileName(String digestFileName) {
+        this.digestFileName = digestFileName;
     }
 }

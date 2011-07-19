@@ -62,16 +62,16 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 public class CryptTool {
-    private CryptoConfiguration config;
+    private final CryptoConfiguration config;
 
     private static Log log = LogFactory.getLog(CryptTool.class);
 
     private static final char[] hexChars = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
-    private List<File> wrongFiles = new ArrayList<File>();
+    private final List<File> wrongFiles = new ArrayList<File>();
 
     public static class ReaderInputStream extends InputStream {
-        private Reader in;
+        private final Reader in;
 
         public ReaderInputStream(Reader in) {
             super();
@@ -116,7 +116,7 @@ public class CryptTool {
     }
 
     public static class WriterOutputStream extends OutputStream {
-        private Writer in;
+        private final Writer in;
 
         public WriterOutputStream(Writer in) {
             super();
@@ -140,7 +140,7 @@ public class CryptTool {
     }
 
     public static class NonClosingInputStream extends InputStream {
-        private InputStream delegate;
+        private final InputStream delegate;
 
         public NonClosingInputStream(InputStream delegate) {
             super();
@@ -208,7 +208,7 @@ public class CryptTool {
     }
 
     public static class NonClosingOutputStream extends OutputStream {
-        private OutputStream delegate;
+        private final OutputStream delegate;
 
         public NonClosingOutputStream(OutputStream delegate) {
             super();
@@ -631,16 +631,19 @@ public class CryptTool {
         return config;
     }
 
-    // public void loadKeys(InputStream keyWallet) throws ConfigurationException, GeneralSecurityException, IOException
+    // public void loadKeys(InputStream keyWallet) throws
+    // ConfigurationException, GeneralSecurityException, IOException
     // {
     // loadKeys(keyWallet, null);
     // }
     //
-    // public void loadKeys(InputStream keyWallet, Key key) throws GeneralSecurityException, ConfigurationException,
+    // public void loadKeys(InputStream keyWallet, Key key) throws
+    // GeneralSecurityException, ConfigurationException,
     // IOException
     // {
     // if(config.getWalletType() == null)
-    // throw new UnsupportedOperationException("CryptoConfiguration does not contain a walletType");
+    // throw new
+    // UnsupportedOperationException("CryptoConfiguration does not contain a walletType");
     // KeyWallet wallet = getKeyWallet(config.getWalletType(), keyWallet, key);
     // for(String keyName : wallet.getEntries().keySet())
     // {
@@ -690,7 +693,7 @@ public class CryptTool {
         PrivateKey pKey = (PrivateKey) parseKey(prk, password);
         privateKey.close();
         String pk = readComplete(publicKey);
-        PublicKey pubKey = (PublicKey) parseKey(prk, password);
+        PublicKey pubKey = (PublicKey) parseKey(pk, password);
         publicKey.close();
         return new KeyPair(pubKey, pKey);
     }
@@ -1029,13 +1032,13 @@ public class CryptTool {
             }
             properties.remove(file.getName());
         } else {
-            File digestFile = new File(file, ".digest");
+            File digestFile = new File(file, config.getDigestFileName());
             if (digestFile.exists()) {
                 try {
                     Properties props = loadDigestFile(key, digestFile);
                     File[] files = file.listFiles(new FileFilter() {
                         public boolean accept(File pathname) {
-                            if (pathname.getName().equals(".digest"))
+                            if (pathname.getName().equals(config.getDigestFileName()))
                                 return false;
                             if (pathname.isDirectory())
                                 return false;
@@ -1136,7 +1139,7 @@ public class CryptTool {
             throw new IOException("File " + dir.getAbsolutePath() + " does not exist.");
         if (!dir.isDirectory())
             throw new IOException("File " + dir.getAbsolutePath() + " has to be a directory.");
-        File digestFile = new File(dir, ".digest");
+        File digestFile = new File(dir, config.getDigestFileName());
         if (digestFile.exists())
             digestFile.delete();
         Properties props = new Properties();
@@ -1225,8 +1228,8 @@ public class CryptTool {
     public static void main(String[] args) {
         CryptTool ct = new CryptTool();
         try {
-            DefaultUserManager.User user = CryptTool.authenticateUser(DefaultUserManager.class, "Sascha", new BufferedInputStream(new FileInputStream(new File("conf/security/users/Sascha"))), ct
-                    .createPBEKey("111"));
+            DefaultUserManager.User user = CryptTool.authenticateUser(DefaultUserManager.class, "Sascha", new BufferedInputStream(new FileInputStream(new File("conf/security/users/Sascha"))),
+                    ct.createPBEKey("111"));
             if (user == null)
                 System.out.println("Login failed");
             else
