@@ -1,72 +1,96 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <?eclipse.ant.import?>
-<project basedir="." default="">
-	<property name="version" value="0.2.0" />
-	<property name="dist" value="dist" />
-	<!-- ================================= 
+<project basedir="."
+         default="">
+  <property name="version"
+            value="0.3.0" />
+  <property name="dist"
+            value="dist" />
+  <!-- ================================= 
           target: createJar              
          ================================= -->
-	<target name="cleanDist" depends="build-eclipse-compiler" description="Clear the distribution directory">
-		<delete dir="${dist}" />
-		<mkdir dir="${dist}" />
-	</target>
-
-	<target name="createDistribution" depends="clean,build-eclipse-compiler,cleanDist,createJar,createExamplesJar,createMessageBusJar,createBindingJar,createValidationJar" description="Create the distribution jars">
-	</target>
-
-	<target name="createJar" depends="build-eclipse-compiler" description="Create the distribution jar">
-		<jar destfile="${dist}/swap-${version}.jar">
-			<fileset dir="bin" excludes="org/aklein/swap/examples/**" />
-		</jar>
-		<zip destfile="${dist}/swap-${version}-src.zip">
-			<fileset dir="src" excludes="org/aklein/swap/examples/**" />
-		</zip>
-	</target>
-
-	<target name="createExamplesJar" depends="build-eclipse-compiler" description="Create the distribution jar for the examples">
-		<jar destfile="${dist}/swap-${version}-examples.jar">
-			<fileset dir="bin" includes="org/aklein/swap/examples/**" />
-		</jar>
-		<zip destfile="${dist}/swap-${version}-examples-conf.zip">
-			<fileset dir=".">
-				<include name="conf/**" />
-				<exclude name="conf/security/keys/**" />
-				<exclude name="conf/security/users/**" />
-			</fileset>
-		</zip>
-		<zip destfile="${dist}/swap-${version}-examples-src.zip">
-			<fileset dir="src" includes="org/aklein/swap/examples/**" />
-		</zip>
-	</target>
-
-	<target name="createMessageBusJar" depends="build-eclipse-compiler" description="Create the distribution jar for the messagebus">
-		<jar destfile="${dist}/swap-messagebus-${version}.jar">
-			<fileset dir="bin" includes="org/aklein/swap/bus/**" />
-			<fileset dir="bin" includes="org/aklein/swap/util/Filter.*" />
-		</jar>
-		<zip destfile="${dist}/swap-messagebus-${version}-src.zip">
-			<fileset dir="bin" includes="org/aklein/swap/bus/**" />
-			<fileset dir="bin" includes="org/aklein/swap/util/Filter.*" />
-		</zip>
-	</target>
-
-	<target name="createBindingJar" depends="build-eclipse-compiler" description="Create the distribution jar for binding">
-		<jar destfile="${dist}/swap-binding-${version}.jar">
-			<fileset dir="bin" includes="org/aklein/swap/util/binding/**" />
-		</jar>
-		<zip destfile="${dist}/swap-binding-${version}-src.zip">
-			<fileset dir="bin" includes="org/aklein/swap/util/binding/**" />
-		</zip>
-	</target>
-
-	<target name="createValidationJar" depends="build-eclipse-compiler" description="Create the distribution jar for validation">
-		<jar destfile="${dist}/swap-validation-${version}.jar">
-			<fileset dir="bin" includes="org/aklein/swap/util/validation/**" />
-			<fileset dir="bin" includes="org/aklein/swap/util/MessageKeyProvider.*" />
-		</jar>
-		<zip destfile="${dist}/swap-validation-${version}-src.zip">
-			<fileset dir="bin" includes="org/aklein/swap/util/validation/**" />
-			<fileset dir="bin" includes="org/aklein/swap/util/MessageKeyProvider.*" />
-		</zip>
-	</target>
+  <target name="cleanDist"
+          depends="build-eclipse-compiler"
+          description="Clear the distribution directory">
+    <delete dir="${dist}" />
+    <mkdir dir="${dist}" />
+  </target>
+  <target name="createDistribution"
+          depends="clean,build-eclipse-compiler,cleanDist,createJar,createExamplesJar,createMessageBusJar,createBindingJar,createValidationJar"
+          description="Create the distribution jars"></target>
+  <target name="createJar"
+          depends="build-eclipse-compiler"
+          description="Create the distribution jar">
+    <jar destfile="${dist}/swap-${version}.jar">
+      <fileset dir="bin"
+               excludes="org/aklein/swap/examples/**" />
+    </jar>
+    <zip destfile="${dist}/swap-${version}-src.zip">
+      <fileset dir="src"
+               excludes="org/aklein/swap/examples/**" />
+    </zip>
+  </target>
+  <target name="createExamplesJar"
+          depends="build-eclipse-compiler"
+          description="Create the distribution jar for the examples">
+    <jar destfile="${dist}/swap-${version}-examples.jar">
+      <fileset dir="bin"
+               includes="org/aklein/swap/examples/**" />
+    </jar>
+    <zip destfile="${dist}/swap-${version}-examples-conf.zip">
+      <fileset dir=".">
+        <include name="conf/**" />
+        <exclude name="conf/security/keys/**" />
+        <exclude name="conf/security/users/**" />
+      </fileset>
+    </zip>
+    <zip destfile="${dist}/swap-${version}-examples-src.zip">
+      <fileset dir="src"
+               includes="org/aklein/swap/examples/**" />
+    </zip>
+  </target>
+  <target name="createMessageBusJar"
+          depends="build-eclipse-compiler"
+          description="Create the distribution jar for the messagebus">
+    <jar destfile="${dist}/swap-messagebus-${version}.jar">
+      <fileset dir="bin"
+               includes="org/aklein/swap/bus/**" />
+      <fileset dir="bin"
+               includes="org/aklein/swap/util/Filter.*" />
+    </jar>
+    <zip destfile="${dist}/swap-messagebus-${version}-src.zip">
+      <fileset dir="bin"
+               includes="org/aklein/swap/bus/**" />
+      <fileset dir="bin"
+               includes="org/aklein/swap/util/Filter.*" />
+    </zip>
+  </target>
+  <target name="createBindingJar"
+          depends="build-eclipse-compiler"
+          description="Create the distribution jar for binding">
+    <jar destfile="${dist}/swap-binding-${version}.jar">
+      <fileset dir="bin"
+               includes="org/aklein/swap/util/binding/**" />
+    </jar>
+    <zip destfile="${dist}/swap-binding-${version}-src.zip">
+      <fileset dir="bin"
+               includes="org/aklein/swap/util/binding/**" />
+    </zip>
+  </target>
+  <target name="createValidationJar"
+          depends="build-eclipse-compiler"
+          description="Create the distribution jar for validation">
+    <jar destfile="${dist}/swap-validation-${version}.jar">
+      <fileset dir="bin"
+               includes="org/aklein/swap/util/validation/**" />
+      <fileset dir="bin"
+               includes="org/aklein/swap/util/MessageKeyProvider.*" />
+    </jar>
+    <zip destfile="${dist}/swap-validation-${version}-src.zip">
+      <fileset dir="bin"
+               includes="org/aklein/swap/util/validation/**" />
+      <fileset dir="bin"
+               includes="org/aklein/swap/util/MessageKeyProvider.*" />
+    </zip>
+  </target>
 </project>
